@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+
+<body>
+    <section>
+        <div class="container mx-auto px-6 py-20">
+            <div class="max-w-5xl mx-auto bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+
+                <!-- Contact Info -->
+                <div class="w-full md:w-2/5 bg-meland-dark p-12 text-white">
+                    <h2 class="text-3xl font-bold mb-8">Contactez-nous</h2>
+                    <p class="text-gray-400 mb-12">Notre équipe est là pour vous aider dans vos démarches de
+                        financement.</p>
+
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl">📧
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">Email</p>
+                                <p class="font-bold" th:text="${contactEmail}">mmeland07@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl">📱
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">WhatsApp</p>
+                                <p class="font-bold">07 11 88 34 52</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-xl">📍
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase">Bureau</p>
+                                <p class="font-bold">Abidjan, Côte d'Ivoire</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-20 border-t border-white/10 pt-12">
+                        <h4 class="font-bold mb-6 text-meland-gold">Suivez-nous</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://instagram.com/melandsxk"
+                                class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-meland-gold hover:text-meland-dark transition">IG</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="w-full md:w-3/5 p-12 md:p-20">
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nom complet</label>
+                                <input type="text" value="Meland" readonly
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Votre Email</label>
+                                <input type="email" placeholder="votre@email.com"
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Sujet</label>
+                            <select
+                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20">
+                                <option>Demande d'informations</option>
+                                <option>Assistance technique</option>
+                                <option>Partenariat</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea rows="5"
+                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20 text-gray-400">Ceci est un message personnalisé automatique de Meland.</textarea>
+                        </div>
+                        <button type="button"
+                            class="w-full bg-meland-green text-white py-5 rounded-2xl font-bold text-lg hover:shadow-xl hover:shadow-meland-green/20 transition">Envoyer
+                            le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

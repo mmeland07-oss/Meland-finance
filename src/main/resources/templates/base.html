@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meland - Micro-finance en Côte d'Ivoire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        meland: {
+                            green: '#006D44',
+                            gold: '#CEAC5D',
+                            dark: '#1A202C',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <span class="text-2xl font-bold text-meland-green">Meland</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="/offers" class="hover:text-meland-green transition">Offres</a>
+                <a href="/about" class="hover:text-meland-green transition">À propos</a>
+                <a href="/contact" class="hover:text-meland-green transition">Contact</a>
+                <a href="/login" class="px-5 py-2 rounded-full border border-meland-green text-meland-green hover:bg-meland-green hover:text-white transition">Connexion</a>
+                <a href="/structure/register" class="px-5 py-2 rounded-full bg-meland-green text-white hover:bg-opacity-90 transition">Compte Structure</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <div th:replace="${content}"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-meland-dark text-white py-12 mt-20">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold">Meland</h3>
+                <p class="text-gray-400 text-sm italic">Site ivoirien — Montants exprimés en FCFA</p>
+                <div class="flex space-x-4">
+                    <!-- Social Links -->
+                    <a href="https://wa.me/2250711883452" class="hover:text-meland-gold transition">WhatsApp</a>
+                    <a href="https://instagram.com/melandsxk" class="hover:text-meland-gold transition">Instagram</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4 text-meland-gold">Navigation</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="/" class="hover:text-white transition">Accueil</a></li>
+                    <li><a href="/offers" class="hover:text-white transition">Toutes les offres</a></li>
+                    <li><a href="/about" class="hover:text-white transition">À propos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4 text-meland-gold">Légal</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="hover:text-white transition">Confidentialité</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4 text-meland-gold">Bureau</h4>
+                <p class="text-gray-400 text-sm">Abidjan, Côte d'Ivoire</p>
+                <p class="text-gray-400 text-sm">Email: mmeland07@gmail.com</p>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-xs">
+            &copy; 2026 Meland. Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>

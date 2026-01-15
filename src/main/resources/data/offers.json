@@ -1,0 +1,34 @@
+[
+    {
+        "id": "o1",
+        "title": "Prêt Scolaire Express",
+        "type": "Prêts scolaires",
+        "structureId": "s1",
+        "minAmount": 50000,
+        "maxAmount": 500000,
+        "interestRate": 3.5,
+        "durationMonths": 10,
+        "commune": "Cocody",
+        "description": "Besoin d'aide pour la rentrée scolaire ? Meland vous accompagne.",
+        "eligibility": "Etre parent d'élèves, résident en CI.",
+        "documents": "CNI, Certificat de scolarité, Bulletin de paie.",
+        "fees": 5000,
+        "views": 120
+    },
+    {
+        "id": "o2",
+        "title": "Micro-crédit Femme Entrepreneure",
+        "type": "Micro-crédits",
+        "structureId": "s1",
+        "minAmount": 100000,
+        "maxAmount": 2000000,
+        "interestRate": 2.5,
+        "durationMonths": 24,
+        "commune": "Abobo",
+        "description": "Boostez votre petit commerce avec notre offre dédiée.",
+        "eligibility": "Femme commerçante.",
+        "documents": "CNI, Registre de commerce (si disponible).",
+        "fees": 0,
+        "views": 350
+    }
+]

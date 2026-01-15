@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+
+<body>
+    <section>
+        <!-- Hero Section -->
+        <div class="relative bg-meland-green py-24 overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="h-full w-full" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+                </svg>
+            </div>
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">Financez vos projets en Côte d'Ivoire
+                </h1>
+                <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">Taux à partir de <span
+                        class="text-meland-gold font-bold">3% / mois</span>. Montant disponible dès <span
+                        class="text-meland-gold font-bold">50 000 FCFA</span>.</p>
+
+                <!-- Search Bar -->
+                <div
+                    class="max-w-4xl mx-auto bg-white p-2 rounded-2xl shadow-2xl flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+                    <div class="flex-grow">
+                        <input type="text" placeholder="Rechercher (type de prêt, structure...)"
+                            class="w-full px-6 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-meland-green/20">
+                    </div>
+                    <div class="md:w-1/4">
+                        <select
+                            class="w-full px-4 py-4 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20">
+                            <option>Toutes les communes</option>
+                            <option>Cocody</option>
+                            <option>Abobo</option>
+                            <option>Marcory</option>
+                            <option>Plateau</option>
+                        </select>
+                    </div>
+                    <button
+                        class="bg-meland-green text-white px-8 py-4 rounded-xl font-bold hover:bg-opacity-90 transition">Rechercher</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="container mx-auto px-6 -mt-10 relative z-20">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-lg text-center hover:scale-105 transition hover:shadow-xl cursor-not-allowed">
+                    <div class="text-3xl mb-3">💰</div>
+                    <h3 class="font-bold text-sm">Micro-crédits</h3>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-lg text-center hover:scale-105 transition hover:shadow-xl cursor-not-allowed">
+                    <div class="text-3xl mb-3">🏢</div>
+                    <h3 class="font-bold text-sm">Prêts PME</h3>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-lg text-center hover:scale-105 transition hover:shadow-xl cursor-not-allowed">
+                    <div class="text-3xl mb-3">🚜</div>
+                    <h3 class="font-bold text-sm">Prêts agricoles</h3>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-lg text-center hover:scale-105 transition hover:shadow-xl cursor-not-allowed">
+                    <div class="text-3xl mb-3">🎓</div>
+                    <h3 class="font-bold text-sm">Prêts scolaires</h3>
+                </div>
+                <div
+                    class="bg-white p-6 rounded-2xl shadow-lg text-center hover:scale-105 transition hover:shadow-xl cursor-not-allowed">
+                    <div class="text-3xl mb-3">👤</div>
+                    <h3 class="font-bold text-sm">Prêts personnels</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Offers -->
+        <div class="container mx-auto px-6 py-20">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-meland-dark">Dernières Offres</h2>
+                    <p class="text-gray-500">Trouvez le prêt qui correspond à vos besoins</p>
+                </div>
+                <a href="/offers" class="text-meland-green font-semibold hover:underline">Voir toutes les offres
+                    &rarr;</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div th:each="offer : ${offers}"
+                    class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 group">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="px-3 py-1 bg-meland-green/10 text-meland-green text-xs font-bold rounded-full uppercase tracking-wider"
+                                th:text="${offer.type}">Type</span>
+                            <span class="text-xs text-gray-400" th:text="${offer.commune}">Commune</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 group-hover:text-meland-green transition"
+                            th:text="${offer.title}">Titre de l'offre</h3>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex justify-between">
+                                <span class="text-gray-500 text-sm">Montant</span>
+                                <span class="font-bold"
+                                    th:text="${#numbers.formatInteger(offer.minAmount, 3, 'POINT') + ' - ' + #numbers.formatInteger(offer.maxAmount, 3, 'POINT') + ' FCFA'}">50k
+                                    - 500k</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500 text-sm">Taux</span>
+                                <span class="font-bold text-meland-green"
+                                    th:text="${offer.interestRate + '% / mois'}">3%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500 text-sm">Durée</span>
+                                <span class="font-bold" th:text="${offer.durationMonths + ' mois'}">12 mois</span>
+                            </div>
+                        </div>
+                        <a th:href="@{'/offers/' + ${offer.id}}"
+                            class="block w-full text-center py-4 bg-gray-50 rounded-2xl font-bold group-hover:bg-meland-green group-hover:text-white transition">Voir
+                            détails</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="container mx-auto px-6 py-20">
+            <div class="bg-meland-dark rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-8">Vous êtes une structure financière ?</h2>
+                    <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">Rejoignez Meland pour donner plus de
+                        visibilité à vos offres de prêts et toucher des milliers d'ivoiriens.</p>
+                    <a href="/structure/register"
+                        class="inline-block bg-meland-gold text-meland-dark px-10 py-5 rounded-2xl font-bold text-lg hover:scale-105 transition">Créer
+                        un compte structure</a>
+                </div>
+                <!-- Decorative abstract shape -->
+                <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-meland-green/20 rounded-full blur-3xl"></div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

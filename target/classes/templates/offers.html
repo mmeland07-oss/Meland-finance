@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+
+<body>
+    <section>
+        <div class="bg-gray-100 py-12">
+            <div class="container mx-auto px-6">
+                <h1 class="text-3xl font-bold text-meland-dark mb-2">Toutes nos offres de prêts</h1>
+                <p class="text-gray-600">Trouvez le financement adapté à vos besoins parmi nos partenaires.</p>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col lg:flex-row gap-12">
+
+                <!-- Filters Sidebar -->
+                <aside class="w-full lg:w-1/4">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 sticky top-28">
+                        <h2 class="text-lg font-bold mb-6">Filtres</h2>
+                        <form action="/offers" method="get" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Rechercher</label>
+                                <input type="text" name="query" th:value="${query}" placeholder="Mot-clé..."
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Type de prêt</label>
+                                <select name="type"
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20">
+                                    <option value="Touts">Tous les types</option>
+                                    <option th:selected="${type == 'Micro-crédits'}">Micro-crédits</option>
+                                    <option th:selected="${type == 'Prêts PME'}">Prêts PME</option>
+                                    <option th:selected="${type == 'Prêts agricoles'}">Prêts agricoles</option>
+                                    <option th:selected="${type == 'Prêts scolaires'}">Prêts scolaires</option>
+                                    <option th:selected="${type == 'Prêts personnels'}">Prêts personnels</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Commune</label>
+                                <select name="commune"
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border-none focus:ring-2 focus:ring-meland-green/20">
+                                    <option value="Toutes les communes">Toutes les communes</option>
+                                    <option th:selected="${commune == 'Cocody'}">Cocody</option>
+                                    <option th:selected="${commune == 'Abobo'}">Abobo</option>
+                                    <option th:selected="${commune == 'Marcory'}">Marcory</option>
+                                    <option th:selected="${commune == 'Plateau'}">Plateau</option>
+                                </select>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-meland-green text-white py-4 rounded-xl font-bold hover:bg-opacity-90 transition shadow-lg shadow-meland-green/20">Appliquer</button>
+                        </form>
+                    </div>
+                </aside>
+
+                <!-- Results List -->
+                <div class="w-full lg:w-3/4">
+                    <div th:if="${#lists.isEmpty(offers)}"
+                        class="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-300">
+                        <div class="text-5xl mb-4">🔍</div>
+                        <h3 class="text-xl font-bold text-gray-400">Aucune offre trouvée</h3>
+                        <p class="text-gray-400">Essayez de modifier vos filtres.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div th:each="offer : ${offers}"
+                            class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                            <div class="p-8">
+                                <div class="flex justify-between items-start mb-6">
+                                    <span
+                                        class="px-3 py-1 bg-meland-green/10 text-meland-green text-xs font-bold rounded-full uppercase tracking-wider"
+                                        th:text="${offer.type}">Type</span>
+                                    <span class="text-xs text-gray-400" th:text="${offer.commune}">Commune</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-4 group-hover:text-meland-green transition"
+                                    th:text="${offer.title}">Titre de l'offre</h3>
+                                <div class="space-y-4 mb-8">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-500 text-sm">Montant</span>
+                                        <span class="font-bold"
+                                            th:text="${#numbers.formatInteger(offer.minAmount, 3, 'POINT') + ' - ' + #numbers.formatInteger(offer.maxAmount, 3, 'POINT') + ' FCFA'}">50k
+                                            - 500k</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-500 text-sm">Taux</span>
+                                        <span class="font-bold text-meland-green"
+                                            th:text="${offer.interestRate + '% / mois'}">3%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-500 text-sm">Durée</span>
+                                        <span class="font-bold" th:text="${offer.durationMonths + ' mois'}">12
+                                            mois</span>
+                                    </div>
+                                </div>
+                                <a th:href="@{'/offers/' + ${offer.id}}"
+                                    class="block w-full text-center py-4 bg-gray-50 rounded-2xl font-bold group-hover:bg-meland-green group-hover:text-white transition">Voir
+                                    détails</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

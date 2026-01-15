@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+
+<body>
+    <section>
+        <div class="bg-meland-dark py-12 text-white">
+            <div class="container mx-auto px-6 flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">Espace Structure</h1>
+                    <p class="text-gray-400" th:text="${structure.name}">Nom de la structure</p>
+                </div>
+                <a href="/structure/offers/new"
+                    class="bg-meland-gold text-meland-dark px-6 py-3 rounded-xl font-bold hover:scale-105 transition">Créer
+                    une offre</a>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 py-12">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <p class="text-gray-500 text-sm uppercase mb-2">Total Offres</p>
+                    <p class="text-4xl font-extrabold text-meland-green" th:text="${offerCount}">0</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <p class="text-gray-500 text-sm uppercase mb-2">Total Vues</p>
+                    <p class="text-4xl font-extrabold text-meland-green" th:text="${totalViews}">0</p>
+                </div>
+                <div
+                    class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <p class="text-gray-500 text-sm uppercase mb-2">Module Premium</p>
+                        <p class="text-xl font-bold text-meland-gold uppercase tracking-widest">Activé ✨</p>
+                    </div>
+                    <div
+                        class="absolute -right-4 -bottom-4 text-6xl opacity-10 grayscale group-hover:grayscale-0 transition">
+                        🚀</div>
+                </div>
+            </div>
+
+            <!-- Offers Table -->
+            <div class="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
+                <div class="p-8 border-b border-gray-50">
+                    <h2 class="text-xl font-bold">Mes Offres de Prêts</h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
+                            <tr>
+                                <th class="px-8 py-4">Titre</th>
+                                <th class="px-8 py-4">Type</th>
+                                <th class="px-8 py-4">Commune</th>
+                                <th class="px-8 py-4">Vues</th>
+                                <th class="px-8 py-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            <tr th:each="offer : ${offers}" class="hover:bg-gray-50 transition">
+                                <td class="px-8 py-6 font-bold" th:text="${offer.title}">Titre</td>
+                                <td class="px-8 py-6">
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs"
+                                        th:text="${offer.type}">Type</span>
+                                </td>
+                                <td class="px-8 py-6 text-gray-500" th:text="${offer.commune}">Commune</td>
+                                <td class="px-8 py-6 font-mono text-meland-green" th:text="${offer.views}">0</td>
+                                <td class="px-8 py-6 space-x-4 text-sm font-semibold">
+                                    <button
+                                        class="text-gray-400 hover:text-meland-dark transition cursor-not-allowed">Modifier</button>
+                                    <button
+                                        class="text-red-400 hover:text-red-600 transition cursor-not-allowed">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

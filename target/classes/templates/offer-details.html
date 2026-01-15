@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+
+<body>
+    <section>
+        <div class="container mx-auto px-6 py-12">
+            <a href="/offers" class="text-meland-green font-semibold mb-8 inline-block hover:underline">&larr; Retour
+                aux offres</a>
+
+            <div class="flex flex-col lg:flex-row gap-12">
+
+                <!-- Left Column: Details -->
+                <div class="w-full lg:w-2/3 space-y-8">
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                            <div>
+                                <span
+                                    class="px-4 py-1.5 bg-meland-green text-white text-xs font-bold rounded-full uppercase tracking-widest mb-4 inline-block shadow-lg shadow-meland-green/20"
+                                    th:text="${offer.type}">Type</span>
+                                <h1 class="text-4xl font-extrabold text-meland-dark" th:text="${offer.title}">Titre de
+                                    l'offre</h1>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-500 text-sm mb-1 uppercase tracking-widest">Structure</p>
+                                <p class="text-xl font-bold text-meland-green"
+                                    th:text="${structure != null ? structure.name : 'Inconnu'}">Nom Structure</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-y border-gray-100 mb-10">
+                            <div>
+                                <p class="text-gray-500 text-xs uppercase mb-2">Montant Max</p>
+                                <p class="text-xl font-bold"
+                                    th:text="${#numbers.formatInteger(offer.maxAmount, 3, 'POINT') + ' FCFA'}">500.000
+                                    FCFA</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-xs uppercase mb-2">Taux d'intérêt</p>
+                                <p class="text-xl font-bold text-meland-green"
+                                    th:text="${offer.interestRate + '% / mois'}">3% / mois</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-xs uppercase mb-2">Durée</p>
+                                <p class="text-xl font-bold" th:text="${offer.durationMonths + ' mois'}">12 mois</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-xs uppercase mb-2">Ville/Commune</p>
+                                <p class="text-xl font-bold" th:text="${offer.commune}">Abidjan</p>
+                            </div>
+                        </div>
+
+                        <div class="prose max-w-none text-gray-700 space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold text-meland-dark mb-4">Description de l'offre</h3>
+                                <p th:text="${offer.description}">Description complète...</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <h3 class="text-lg font-bold text-meland-dark mb-4">Conditions d'éligibilité</h3>
+                                    <p class="text-sm bg-gray-50 p-6 rounded-2xl" th:text="${offer.eligibility}">
+                                        Conditions...</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-meland-dark mb-4">Documents requis</h3>
+                                    <p class="text-sm bg-gray-50 p-6 rounded-2xl" th:text="${offer.documents}">
+                                        Documents...</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-meland-dark mb-4">Frais éventuels</h3>
+                                <p class="text-sm text-meland-green font-bold"
+                                    th:text="${#numbers.formatInteger(offer.fees, 3, 'POINT') + ' FCFA'}">0 FCFA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Action Box -->
+                <div class="w-full lg:w-1/3">
+                    <div class="bg-meland-dark text-white p-10 rounded-[2.5rem] shadow-2xl sticky top-28">
+                        <h3 class="text-2xl font-bold mb-8">Intéressé(e) ?</h3>
+                        <div class="space-y-6 mb-10">
+                            <p class="text-gray-400 text-sm">Cliquez sur le bouton ci-dessous pour faire votre demande
+                                directement auprès de <span class="text-white font-bold"
+                                    th:text="${structure != null ? structure.name : 'la structure'}"></span>.</p>
+                            <div class="bg-white/10 p-4 rounded-2xl border border-white/5">
+                                <p class="text-xs text-gray-500 uppercase mb-1">Contact Structure</p>
+                                <p class="font-mono text-lg" th:text="${structure != null ? structure.phone : 'N/A'}">
+                                    +225 00 00 00 00 00</p>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-meland-gold text-meland-dark py-5 rounded-2xl font-bold text-lg hover:scale-105 transition mb-6 shadow-xl shadow-meland-gold/10">Demander
+                            ce prêt</button>
+                        <button
+                            class="w-full bg-transparent border border-white/20 text-white py-4 rounded-2xl font-semibold hover:bg-white/5 transition flex items-center justify-center gap-2">
+                            <span>📤 Partager l'offre</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

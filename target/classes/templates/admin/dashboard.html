@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout(~{::section})}">
+
+<body>
+    <section>
+        <div class="bg-meland-dark py-12 text-white">
+            <div class="container mx-auto px-6">
+                <h1 class="text-3xl font-bold text-meland-gold">Espace Administrateur</h1>
+                <p class="text-gray-400">Gestion globale de la plateforme Meland</p>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 py-12">
+            <!-- Global Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <p class="text-gray-500 text-xs uppercase mb-2">Total Structures</p>
+                    <p class="text-3xl font-extrabold text-meland-green" th:text="${#lists.size(structures)}">0</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <p class="text-gray-500 text-xs uppercase mb-2">Total Offres</p>
+                    <p class="text-3xl font-extrabold text-meland-green" th:text="${#lists.size(offers)}">0</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <p class="text-gray-500 text-xs uppercase mb-2">Total Vues</p>
+                    <p class="text-3xl font-extrabold text-meland-green" th:text="${totalViews}">0</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <p class="text-gray-500 text-xs uppercase mb-2">Comptes Premium</p>
+                    <p class="text-3xl font-extrabold text-meland-gold" th:text="${premiumCount}">0</p>
+                </div>
+            </div>
+
+            <!-- Structures Management -->
+            <div class="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden mb-12">
+                <div class="p-8 border-b border-gray-50 flex justify-between items-center">
+                    <h2 class="text-xl font-bold text-meland-dark">Liste des Structures</h2>
+                    <span
+                        class="text-xs font-bold text-gray-400 bg-gray-50 px-4 py-2 rounded-full border border-gray-100">Modération
+                        requise</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
+                            <tr>
+                                <th class="px-8 py-4">Nom</th>
+                                <th class="px-8 py-4">Email</th>
+                                <th class="px-8 py-4">Type</th>
+                                <th class="px-8 py-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            <tr th:each="struct : ${structures}" class="hover:bg-gray-50 transition">
+                                <td class="px-8 py-6">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-meland-green/10 rounded-full flex items-center justify-center text-meland-green font-bold text-xs"
+                                            th:text="${#strings.substring(struct.name,0,1)}">M</div>
+                                        <span class="font-bold" th:text="${struct.name}">Nom</span>
+                                    </div>
+                                </td>
+                                <td class="px-8 py-6 text-gray-500 text-sm" th:text="${struct.email}">Email</td>
+                                <td class="px-8 py-6">
+                                    <span th:if="${struct.premium}"
+                                        class="px-2 py-0.5 bg-meland-gold/20 text-meland-gold text-[10px] font-bold rounded uppercase">Premium</span>
+                                    <span th:unless="${struct.premium}"
+                                        class="px-2 py-0.5 bg-gray-100 text-gray-400 text-[10px] font-bold rounded uppercase">Gratuit</span>
+                                </td>
+                                <td class="px-8 py-6">
+                                    <button
+                                        class="text-red-400 hover:text-red-600 font-bold text-xs cursor-not-allowed">Suspendre</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

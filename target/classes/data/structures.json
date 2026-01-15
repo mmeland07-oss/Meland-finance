@@ -1,0 +1,20 @@
+[
+  {
+    "id": "s1",
+    "name": "Micro-Finance Invest",
+    "logo": "/images/logos/s1.png",
+    "description": "Leader de la micro-finance en Côte d'Ivoire.",
+    "email": "contact@mfinvest.ci",
+    "phone": "+225 0102030405",
+    "premium": true
+  },
+  {
+    "id": "s2",
+    "name": "Agri-Prêt CI",
+    "logo": "/images/logos/s2.png",
+    "description": "Soutien aux agriculteurs ivoiriens.",
+    "email": "info@agripret.ci",
+    "phone": "+225 0707070707",
+    "premium": false
+  }
+]
